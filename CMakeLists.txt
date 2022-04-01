@@ -1,25 +1,25 @@
-cmake_minimum_required (VERSION 2.8.12)
-project (Qt5CMake)
+cmake_minimum_required (VERSION 3.8.2)
+set(PROJECT queSettings)
+project(${PROJECT})
 
-find_package (Qt5Widgets)
+# Find includes in the build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set (queSettingsLib_src ${PROJECT_SOURCE_DIR}/src/mainwindow.cpp)
-set (queSettingsLib_hdr ${PROJECT_SOURCE_DIR}/include/mainwindow.h)
-set (queSettingsLib_ui  ${PROJECT_SOURCE_DIR}/UI/mainwindow.ui)
-set (queSettingsBin_src ${PROJECT_SOURCE_DIR}/src/main.cpp)
+# Turn on automatic invocation of the MOC, UIC & RCC
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
-qt5_wrap_cpp(queSettingsLib_hdr_moc ${queSettingsLib_hdr})
-qt5_wrap_ui (queSettingsLib_ui_moc  ${queSettingsLib_ui})
+# Add a compiler flag
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
-include_directories (${PROJECT_SOURCE_DIR})
-include_directories (${PROJECT_BINARY_DIR})
+# Find the QtWidgets library
+find_package(Qt5 REQUIRED COMPONENTS Widgets)
 
-add_library (queSettingsLib SHARED 
-    ${queSettingsLib_src}
-    ${queSettingsLib_hdr_moc}
-    ${queSettingsLib_ui_moc}
-)
-target_link_libraries (queSettingsLib Qt5::Widgets)
+# Tell CMake to create the executable
+add_executable(${PROJECT} src/main.cpp src/mainwindow.cpp src/mainwindow.ui)
 
-add_executable(queSettings ${queSettingsBin_src})
-target_link_libraries (queSettings queSettingsLib)
+# Add the Qt5 Widgets for linking
+target_link_libraries(${PROJECT} Qt5::Widgets)
+
+install(TARGETS ${PROJECT} RUNTIME DESTINATION bin)
