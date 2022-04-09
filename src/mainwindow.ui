@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>queSettings</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="applications-system"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
