@@ -23,4 +23,4 @@ add_executable(${PROJECT} src/main.cpp src/mainwindow.cpp src/mainwindow.ui)
 target_link_libraries(${PROJECT} Qt5::Widgets)
 
 install(TARGETS ${PROJECT} RUNTIME DESTINATION bin)
-install(FILES "resources/queSettings.desktop" DESTINATION "${CMAKE_INSTALL_FULL_DATAROOTDIR}/applications")
+install(FILES "resources/queSettings.desktop" DESTINATION "/usr/share/applications")
