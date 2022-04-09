@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=queSettings
+Comment=Settings Manager
+Icon=applications-system
+TryExec=quesettings
+Exec=quesettings
+Categories=System;Monitor;Qt;
